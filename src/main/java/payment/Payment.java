@@ -1,5 +1,7 @@
 package payment;
 
+import carts.Cart;
+
 public interface Payment {
-    boolean process(double price);
+    boolean performPayment(Cart cart, double yourMoney);
 }

@@ -1,4 +1,4 @@
-package flowerFeatures;
+package flowers.flowerFeatures;
 
 import lombok.Getter;
 import lombok.ToString;
