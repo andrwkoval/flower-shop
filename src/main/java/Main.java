@@ -1,13 +1,14 @@
 import carts.Cart;
 import flowers.Flower;
 import flowers.FlowerBouquet;
+import flowers.FlowerBunch;
 import flowers.flowerFeatures.*;
+import flowershop.FlowerStore;
 import payment.CashPayment;
 import payment.Payment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,12 +34,22 @@ public class Main {
         FlowerStore flowerStore = new FlowerStore(flowersInShop);
         flowerStore.assortment();
 
-        HashMap<Integer, Integer> createBouquets = new HashMap<>();
-        for (int i = 0; i < 6; i++) {
-            createBouquets.put(i, (i + 1) * 3);
-        }
+        FlowerBunch flowerBunchRose1 = new FlowerBunch(rose1, 10);
+        FlowerBunch flowerBunchRose2 = new FlowerBunch(rose2, 12);
+        FlowerBunch flowerBunchTulip1 = new FlowerBunch(tulip1, 14);
+        FlowerBunch flowerBunchTulip2 = new FlowerBunch(tulip2, 16);
+        FlowerBunch flowerBunchCham1 = new FlowerBunch(cham1, 18);
+        FlowerBunch flowerBunchCham2 = new FlowerBunch(cham2, 20);
 
-        FlowerBouquet customBouquet = flowerStore.formBouquetFromFlowers(createBouquets);
+        ArrayList<FlowerBunch> createBouquet = new ArrayList<>();
+        createBouquet.add(flowerBunchRose1);
+        createBouquet.add(flowerBunchRose2);
+        createBouquet.add(flowerBunchTulip1);
+        createBouquet.add(flowerBunchTulip2);
+        createBouquet.add(flowerBunchCham1);
+        createBouquet.add(flowerBunchCham2);
+        FlowerBouquet customBouquet = flowerStore.formBouquetFromFlowerBunch(createBouquet);
+
         Cart currentCart = flowerStore.formNewCart(true);
         currentCart.addBouquent(customBouquet);
         System.out.println("Current cart: " + currentCart.getBouquets());

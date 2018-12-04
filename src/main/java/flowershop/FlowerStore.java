@@ -1,3 +1,5 @@
+package flowershop;
+
 import carts.Cart;
 import carts.DiscountCart;
 import carts.SimpleCart;
@@ -9,7 +11,6 @@ import payment.Payment;
 import payment.PaymentContext;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class FlowerStore {
     private ArrayList<FlowerBouquet> defaultBouqts = DefaultBouquets.getInstance().getDefaultBouquets();
@@ -19,13 +20,17 @@ public class FlowerStore {
         this.flowers = flowers;
     }
 
-    public FlowerBouquet formBouquetFromFlowers(HashMap<Integer, Integer> arr) {
+    public void assortment() {
+        System.out.println("Available flowers to create bouquets: ");
+        System.out.println(flowers);
+        System.out.println("Default bouquets: ");
+        System.out.println(defaultBouqts);
+    }
+
+    public FlowerBouquet formBouquetFromFlowerBunch(ArrayList<FlowerBunch> flowerBunches) {
         FlowerBouquet bouquet = new FlowerBouquet();
-        for (int key : arr.keySet()) {
-            if (key > flowers.size() - 1) {
-                continue;
-            }
-            bouquet.addFlowers(new FlowerBunch(flowers.get(key), arr.get(key)));
+        for (FlowerBunch flowerBunche : flowerBunches) {
+            bouquet.addFlowers(flowerBunche);
         }
         return bouquet;
     }
@@ -43,14 +48,7 @@ public class FlowerStore {
         if (paymentMethod.performPayment(currentCart, yourMoney)) {
             return currentCart.getBouquets();
         }
-        return null;
+        return new ArrayList<>();
 
-    }
-
-    public void assortment() {
-        System.out.println("Available flowers to create bouquets: ");
-        System.out.println(flowers);
-        System.out.println("Default bouquets: ");
-        System.out.println(defaultBouqts);
     }
 }
